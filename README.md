@@ -2,6 +2,13 @@
 
 A voice-powered Q&A application. Speak or type a question and get a streaming AI response from a local [Ollama](https://ollama.ai) instance.
 
+## Speech Recognition
+
+Uses the browser's native [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API) — no external service or API key required. Audio is processed entirely by the browser/OS built-in engine.
+
+**Supported browsers:** Chrome, Edge, Safari
+**Not supported:** Firefox
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org) v18+
