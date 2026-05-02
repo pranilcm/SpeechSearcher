@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Searcher - Voice Q&A with AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎙️ Speech Searcher</h1>
+            <p class="subtitle">Ask questions with your voice, get AI-powered answers</p>
+        </header>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-label">Server:</span>
+                <span id="serverStatus" class="status-value">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Ollama:</span>
+                <span id="ollamaStatus" class="status-value">Checking...</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Model:</span>
+                <select id="modelSelect" class="model-select">
+                    <option value="llama2">llama2</option>
+                </select>
+            </div>
+        </div>
+
+        <main>
+            <div class="input-section">
+                <div class="voice-controls">
+                    <button id="micButton" class="mic-button" aria-label="Start voice input">
+                        <svg class="mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                        </svg>
+                        <span class="mic-text">Click to Speak</span>
+                    </button>
+                    <div id="listeningIndicator" class="listening-indicator hidden">
+                        <div class="pulse"></div>
+                        <span>Listening...</span>
+                    </div>
+                </div>
+
+                <div class="transcript-container">
+                    <label for="questionInput" class="input-label">Your Question:</label>
+                    <textarea
+                        id="questionInput"
+                        class="question-input"
+                        placeholder="Click the microphone to speak (auto-submits) or type your question here..."
+                        rows="3"
+                        maxlength="2000"
+                    ></textarea>
+                    <div class="input-footer">
+                        <span id="charCount" class="char-count">0 / 2000</span>
+                        <div class="button-group">
+                            <button id="cancelButton" class="cancel-button hidden">Cancel</button>
+                            <button id="askButton" class="ask-button">Ask Question</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="responseSection" class="response-section hidden">
+                <h2 class="response-title">Answer:</h2>
+                <div id="responseContent" class="response-content">
+                    <div class="typing-indicator hidden">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div id="responseText" class="response-text"></div>
+                </div>
+            </div>
+
+            <div id="errorSection" class="error-section hidden">
+                <div class="error-content">
+                    <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <div>
+                        <h3 class="error-title">Error</h3>
+                        <p id="errorMessage" class="error-message"></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="help-text">
+                <p><strong>How to use:</strong></p>
+                <ul>
+                    <li>Click the microphone button and speak your question</li>
+                    <li>Or type your question in the text area</li>
+                    <li>Click "Ask Question" to get an AI-powered answer</li>
+                    <li>Answers stream in real-time from your local Ollama instance</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
