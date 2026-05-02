@@ -2,10 +2,10 @@
   "name": "speech-searcher",
   "version": "1.0.0",
   "description": "Voice-powered Q&A application with local Ollama integration",
+  "workspaces": ["server"],
   "scripts": {
-    "start": "cd server && npm start",
-    "dev": "cd server && npm run dev",
-    "install-deps": "cd server && npm install"
+    "start": "npm start --workspace=server",
+    "dev": "npm run dev --workspace=server"
   },
   "keywords": ["speech", "voice", "ollama", "ai", "qa"],
   "author": "",
