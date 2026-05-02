@@ -122,9 +122,9 @@ app.post('/api/ask', async (req, res) => {
   res.setHeader('Cache-Control', 'no-cache');
   res.setHeader('Connection', 'keep-alive');
 
-  // Abort stream if client disconnects
+  // Abort stream if the SSE response connection closes (client cancel or disconnect)
   let aborted = false;
-  req.on('close', () => { aborted = true; });
+  res.on('close', () => { aborted = true; });
 
   try {
     console.log(`Processing question with model ${validatedModel}:`, question.substring(0, 80));
